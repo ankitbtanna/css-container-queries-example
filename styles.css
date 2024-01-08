@@ -1,0 +1,65 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  display: flex;
+  flex: 1;
+  border: 1px solid red;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  width: 75%;
+  height: min(50%, 400px);
+  border: 2px solid blue;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card--image {
+  grid-area: image;
+}
+
+.card--image img {
+  width: auto; // to maintain aspect ratio. You can use 100% if you don't care about that
+  height: 100%;
+}
+
+.card--title {
+  grid-area: title;
+}
+
+.card--description {
+  grid-area: description;
+}
+
+.card--tags {
+  grid-area: tags;
+}
+
+.card--rating {
+  grid-area: rating;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "image title"
+    "image description"
+    "image tags"
+    "image rating";
+}
