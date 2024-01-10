@@ -1,44 +1,41 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
 html {
   font-size: 10px;
 }
 
 body {
-  display: flex;
-  flex: 1;
-  border: 1px solid red;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 2px solid red;
 }
 
-.card {
+html,
+body {
+  height: 100%;
+}
+
+body {
   display: flex;
-  width: 75%;
-  height: min(50%, 400px);
-  border: 2px solid blue;
-  border-radius: 15px;
-  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .card--image {
   grid-area: image;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card--image img {
-  width: auto; // to maintain aspect ratio. You can use 100% if you don't care about that
-  height: 100%;
+  width: 100%;
+  height: auto;
 }
 
 .card--title {
   grid-area: title;
+  font-size: 4rem;
 }
 
 .card--description {
@@ -47,19 +44,123 @@ body {
 
 .card--tags {
   grid-area: tags;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.card--tags label {
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding-inline: 1rem;
 }
 
 .card--rating {
+  font-size: 4rem;
   grid-area: rating;
 }
 
 .card {
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, 1fr);
+  column-gap: 2rem;
+  grid-template-columns: max(50px, 275px) 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     "image title"
     "image description"
     "image tags"
     "image rating";
+}
+
+.card > * {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.movie-banner {
+  height: max(50%, 600px);
+  border-radius: 2rem;
+  overflow: hidden;
+  width: 75%;
+  container: banner / inline-size;
+  border: 1px solid green;
+
+  /* 
+    container-name: card;
+    container-type: inline-size
+  */
+}
+
+@container banner (max-width: 750px) {
+  .card--image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card--image img {
+    height: 100%;
+    width: auto;
+  }
+
+  .card {
+    background-color: #ff8888;
+
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 225px 1fr 1fr 1fr;
+    grid-template-areas:
+      "image image"
+      "title description"
+      "title tags"
+      "title rating";
+  }
+
+  .card .card--description {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+}
+
+@container banner (max-width: 500px) {
+  .card--image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card--image img {
+    height: 100%;
+    width: auto;
+  }
+
+  .card {
+    background-color: #88ff8c;
+    grid-template-columns: 1fr;
+    grid-template-rows: 225px 1fr 1fr 1fr;
+    grid-template-areas:
+      "image"
+      "title"
+      "description"
+      "tags"
+      "rating";
+  }
+
+  .card .card--rating {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.content1000 {
+  width: 1024px;
+  border: 2px solid red;
+}
+
+.content750 {
+  width: 750px;
+  border: 2px solid yellow;
+}
+
+.content500 {
+  width: 500px;
+  border: 2px solid blue;
 }
